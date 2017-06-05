@@ -1,0 +1,4 @@
+load("/Users/josh/foolaroundR/sls.RDS")
+load("/Users/josh/foolaroundR/companies.rds")
+load("/Users/josh/foolaroundR/sls.RDS")
+load("/Users/josh/foolaroundR/sls.RDS")
