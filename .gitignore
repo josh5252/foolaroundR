@@ -2,9 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
-.csv
-.RDS
-.xlsx
 *.rds
 
 *.csv
