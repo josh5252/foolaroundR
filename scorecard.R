@@ -2,7 +2,12 @@ library(tidyverse)
 library(readxl)
 
 sdt <- read_excel('scorecard.xlsx',
+<<<<<<< HEAD
                   sheet = 'data') %>%
+=======
+                  sheet = 'data',
+                  ) %>%
+>>>>>>> fa07f63452a328ef67a0c293cfe0aa9dbc6f3a43
   select(-SOD_ID:-REC_RANGE,
          -STORE_NAME:-REGION_RANK) %>%
   mutate_if(is.character,
@@ -85,8 +90,12 @@ y <- expr(-SALES_RETURNS)
 z <- s %>% mutate(z = y)          # Error
 z <- z %>% mutate(zz = eval(y))
 
+<<<<<<< HEAD
 z <- s %>% mutate(z = eval(rlang::parse_expr('Num')))
 z <- z %>% mutate(zz = -SALES_RETURNS)
 z <- z %>% mutate(zzz = eval(syms(Num)))
+=======
+z <- s %>% mutate(y = eval(Num))
+>>>>>>> fa07f63452a328ef67a0c293cfe0aa9dbc6f3a43
 
 z <- s %>% mutate(z = eval(Num))
