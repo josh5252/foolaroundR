@@ -3,7 +3,7 @@
 .RData
 .Ruserdata
 *.rds
-
 *.csv
-
 *.xlsx
+.DS_Store
+.Rapp.history

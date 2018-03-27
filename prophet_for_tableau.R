@@ -1,0 +1,11 @@
+file <- read.delim('prophetdata.csv', fileEncoding = 'UTF-16LE', col.names = c('ds', 'st', 'y'), stringsAsFactors = FALSE)
+l <- length(file[[1]])
+pd <- file %>% mutate(ds = mdy(ds)) %>% group_by(st) %>% nest() %>% ungroup()
+pd <- pd %>% mutate(m = map(.$data, prophet, yearly.seasonality = FALSE, n.changepoints = 5))
+pd <- pd %>% mutate(f = map(.$m, make_future_dataframe, periods = 35, include_history = FALSE))
+pd <- pd %>% mutate(fc = map2(.$m, .$f, predict))
+aa <- pd %>% unnest(fc) %>% select(st, ds, yhat_lower, yhat, yhat_upper) %>% mutate(result = paste(yhat_lower, yhat, sep = '~')) %>% mutate(result = paste(result, yhat_upper, sep = '|')) %>% select (st, ds, result)
+pad <- data.frame(matrix(nrow = l - length(aa$result), ncol = 3))
+names(pad) <- names(aa)
+aa <- bind_rows(pad, aa)
+aa$result
